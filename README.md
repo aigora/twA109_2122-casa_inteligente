@@ -6,6 +6,7 @@ Casa inteligente que automaticen alarma, luces y movimiento de persianas
 
 Daniel Simón Novillo @danielsimon-upm
 Laura Rollón Hernández @l-rollon
+Luna Silveira Baciero @lunasbaciero
 
 ## Objetivos del trabajo
 
