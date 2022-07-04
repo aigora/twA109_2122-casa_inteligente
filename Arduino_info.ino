@@ -9,6 +9,18 @@ const int TRIG = 9;
 String mensaje_entrada;
 String mensaje_salida;
 int estado_per;
+const int Dist1m = 75;
+const int Dist1b = 40;
+const int Dist1a = 125;
+const int Dist2m = 400;
+const int Dist2b = 200;
+const int Dist2a = 600;
+const int luzm = 35;
+const int luzb = 20;
+const int luza = 70;
+int Dist1;
+int Dist2;
+int luz;
 
 void setup() {
 
@@ -29,19 +41,22 @@ void loop() {
    long distancia2 = medir(TRIG2,ECHO2);
 
    int valor = analogRead(A2);
-   
 
-   if(distancia<75){
+   int Dist1 = Dist1m;
+   int Dist2 = Dist2m;
+   int luz = luzm;
+
+   if(distancia<Dist1){
     digitalWrite(ALARMA, HIGH);
    }
-   if(distancia>75){
+   if(distancia>Dist1){
     digitalWrite(ALARMA, LOW);
    }
 
-   if(distancia2<400){
+   if(distancia2<Dist2){
     digitalWrite(ALARMA2, HIGH);
    }
-   if(distancia2>400){
+   if(distancia2>Dist2){
     digitalWrite(ALARMA2, LOW);
    }
 
@@ -59,7 +74,7 @@ void loop() {
   }
 
    
-   if(valor>35){
+   if(valor>luz){
       if(estado_per==1){
 
         digitalWrite(3,LOW);
@@ -71,7 +86,7 @@ void loop() {
       }
    }
    
-   if(valor<35){
+   if(valor<luz){
       if(estado_per==0){
 
         digitalWrite(3,HIGH);
@@ -123,6 +138,43 @@ void procesar_mensajes(void)
           mensaje_salida=String("ALARMA_INACTIVA");
          }
       }
+      else
+        if(mensaje_entrada.compareTo("Dist1a")==0){
+          Dist1=Dist1a;
+        }
+        else
+        if(mensaje_entrada.compareTo("Dist1m")==0){
+          Dist1=Dist1m;
+        }
+        else
+        if(mensaje_entrada.compareTo("Dist1b")==0){
+          Dist1=Dist1b;
+        }
+        else
+        if(mensaje_entrada.compareTo("Dist2a")==0){
+          Dist2=Dist2a;
+        }
+        else
+        if(mensaje_entrada.compareTo("Dist2m")==0){
+          Dist2=Dist2m;
+        }
+        else
+        if(mensaje_entrada.compareTo("Dist2b")==0){
+          Dist2=Dist2b;
+        }else
+        if(mensaje_entrada.compareTo("luza")==0){
+          luz=luza;
+        }
+        else
+        if(mensaje_entrada.compareTo("luzm")==0){
+          luz=luzm;
+        }
+        else
+        if(mensaje_entrada.compareTo("luzb")==0){
+          luz=luzb;
+        }
+        
+      
       else
         mensaje_salida="COMANDO DESCONOCIDO";
 
